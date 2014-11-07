@@ -94,7 +94,7 @@ background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 .selector ul{ float: left; }
 .ui{ transition: opacity 250ms ease-out }
 .hidden{ pointer-events:none; opacity: 0;}
-#panel{ position: absolute; right: 0; top: 0; bottom: 0; width: 380px; overflow: auto; background-color: rgba( 255, 158, 54, .4 ); z-index: 10;}
+#panel{ position: absolute; right: 0; top: 0; bottom: 0; width: 100px; overflow: auto; background-color: rgba( 255, 158, 54, .4 ); z-index: 10;}
 #panel ul{ list-style-type: none; padding: 10px 0;}
 #panel li{ position: relative; padding: 3px 0;}
 #panel li input{ position: absolute; width: 50%; right: 40px;}

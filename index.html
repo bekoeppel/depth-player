@@ -15,79 +15,17 @@
 	</head>
 	<body>
 
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-
-	<div class="title ui" >
-		<br/><br/>
-		<div>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-via="thespite" data-lang="en">Tweet</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-			
-			<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-			<div class="g-plusone" data-size="medium" data-annotation="bubble"></div>
-			
-			<div class="fb-like" data-href="http://www.clicktorelease.com/code/depth-player/" data-width="The pixel width of the plugin" data-height="The pixel height of the plugin" data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="true" data-send="false"></div>
-		</div>
-
-	</div>
-
 	<div id="panel" class="ui">
 
-			<a href="https://github.com/spite/android-lens-blur-depth-extractor"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
-
 		<div>
-			<h1>About</h1>
-			<p>Check out the GitHub project here:<br/><a class="inside" href="https://github.com/spite/android-lens-blur-depth-extractor" >android-lens-blur-depth-extractor</a>.</p>
-			<p>Code by Jaume Sánchez <a class="inside" href="http://www.twitter.com/thespite" rel="external">@thespite</a> using <a class="inside" href="http://www.threejs.org" rel="external">three.js</a><br/>and Kinect code by <a class="inside" href="http://www.twitter.com/kcimc" rel="external">@kcimc</a> and <a class="inside" href="http://www.twitter.com/mrdoob" rel="external">@mrdoob</a>.
-		</div>
-		<div>
-			<h1>Instructions</h1>
-			<p>Upload a file captured with the new Android Lens Blur application, and see the model in 3D.</p>
-			<p>Click and drag to rotate, mousewheel to zoom / Touch and drag to rotate, pinch to zoom.</p>
-		</div>
-		<div>
-			<h1>Source Lens Blur image</h1>
-			<p>Select one of these images:</p>
-			<ul id="imageList"></ul>
-			<p>or upload your own:</p>
 			<input type="file" id="uploadFile" name="uploadFile" class="custom-file-input"/>
 		</div>
-		<div>
-			<h1>Render mode</h1>
-			<p><input type="button" data-rendermode="solid" value="Solid" class="renderMode button"></input> <input type="button" data-rendermode="point" value="Point cloud" class="renderMode button"></input> <input type="button" data-rendermode="wireframe" value="Wireframe" class="renderMode button"></input></p>
-		</div>
-		<div>
-			<h1>Actions</h1>
-			<p><a class="button" href="#" id="exportOBJ" >Download .obj</a> <a class="button" href="#" id="uploadSketchfab" >Upload to Sketchfab</a> <!--<a class="button" href="#" id="fullScreen" >Go fullscreen</a> <a class="button" href="#" id="takeSnapshot" >Snapshot</a>--></p>
-		</div>
-		<div>
-			<h1>Settings</h1>
-			<p>You'll have to reload the model for the changes to be effective.</p>
-			<ul>
-				<li>Smooth mesh: <input type="range" id="smoothRadius" min="0" max="100"></input></li>
-				<li>Quad size: <input type="range" id="quadSize" min="1" max="10"></input></li>
-				<li>Point size: <input type="range" id="pointSize" min="1" max="5"></input></li>
-				<li>Sketchfab token: <input type="text" id="sketchfabToken" ></input></li>
-			</li>
-		</div>
 
 	</div>
 
-	<div id="container" ></div>
-
-	<h1 class="title">Depth Data Viewer</h1>
-
-	<div id="loading">
-		<p>Loading...</p>
-		<div id="progress" ></div>
+	<div id="container" >
 	</div>
+
 	<div id="message">
 		<p></p>
 		<a href="#" class="close inside">Close</a>
@@ -108,12 +46,12 @@ var settings = {
 
 function loadSettings() {
 
-	if( localStorage ) {
-		if( localStorage.smoothRadius ) settings.smoothRadius = parseFloat( localStorage.smoothRadius );
-		if( localStorage.quadSize ) settings.quadSize = parseFloat( localStorage.quadSize );
-		if( localStorage.pointSize ) settings.pointSize = parseFloat( localStorage.pointSize );
-		if( localStorage.sketchfabToken ) settings.sketchfabToken = localStorage.sketchfabToken;			
-	}
+//	if( localStorage ) {
+//		if( localStorage.smoothRadius ) settings.smoothRadius = parseFloat( localStorage.smoothRadius );
+//		if( localStorage.quadSize ) settings.quadSize = parseFloat( localStorage.quadSize );
+//		if( localStorage.pointSize ) settings.pointSize = parseFloat( localStorage.pointSize );
+//		if( localStorage.sketchfabToken ) settings.sketchfabToken = localStorage.sketchfabToken;			
+//	}
 
 	
 	if( settings.smoothRadius < 0 ) settings.smoothRadius = 0;
@@ -123,57 +61,57 @@ function loadSettings() {
 	if( settings.pointSize < 1 ) settings.pointSize = 1;
 	if( settings.pointSize > 5 ) settings.pointSize = 5;
 
-	for( var j in settings ) {
-		var el = document.getElementById( j );
-		el.value = settings[ j ];
-
-		var span = document.createElement( 'span' );
-		if( el.getAttribute( 'type' ) == 'range' ) {
-			el.parentNode.insertBefore( span, el.nextSibling );
-		}
-		span.textContent = el.value;
-
-		( function( s ) { el.addEventListener( 'change', function( e ) {
-
-			var id = this.getAttribute( 'id' );
-
-			if( id == 'smoothRadius' ) {
-				if( this.value < 0 ) this.value = 0;
-				if( this.value > 100 ) this.value = 100;
-			}
-
-			if( id == 'quadSize' ) {
-				if( this.value < 1 ) this.value = 1;
-				if( this.value > 10 ) this.value = 10;
-			}
-
-			if( id == 'pointSize' ) {
-				if( this.value < 1 ) this.value = 1;
-				if( this.value > 5 ) this.value = 5;
-			}
-
-			settings[ id ] = this.value;
-			s.textContent = this.value;
-
-			saveSettings();
-		} ); } )( span );
-	}
+//	for( var j in settings ) {
+//		var el = document.getElementById( j );
+//		el.value = settings[ j ];
+//
+//		var span = document.createElement( 'span' );
+//		if( el.getAttribute( 'type' ) == 'range' ) {
+//			el.parentNode.insertBefore( span, el.nextSibling );
+//		}
+//		span.textContent = el.value;
+//
+//		( function( s ) { el.addEventListener( 'change', function( e ) {
+//
+//			var id = this.getAttribute( 'id' );
+//
+//			if( id == 'smoothRadius' ) {
+//				if( this.value < 0 ) this.value = 0;
+//				if( this.value > 100 ) this.value = 100;
+//			}
+//
+//			if( id == 'quadSize' ) {
+//				if( this.value < 1 ) this.value = 1;
+//				if( this.value > 10 ) this.value = 10;
+//			}
+//
+//			if( id == 'pointSize' ) {
+//				if( this.value < 1 ) this.value = 1;
+//				if( this.value > 5 ) this.value = 5;
+//			}
+//
+//			settings[ id ] = this.value;
+//			s.textContent = this.value;
+//
+//			saveSettings();
+//		} ); } )( span );
+//	}
 
 }
 
 function setLoadingText( text ) {
-	loading.querySelector( 'p' ).textContent = text;
+	//loading.querySelector( 'p' ).textContent = text;
 }
 
 function setProgress( p ) {
-	loading.querySelector( '#progress' ).style.width = ( loading.clientWidth * p ) + 'px';
+	//loading.querySelector( '#progress' ).style.width = ( loading.clientWidth * p ) + 'px';
 }
 
 function showLoading( show ) {
 
-	setProgress( 0 );
-	if( show ) loading.style.opacity = 1;
-	else loading.style.opacity = 0;
+	//setProgress( 0 );
+	//if( show ) loading.style.opacity = 1;
+	//else loading.style.opacity = 0;
 
 }
 
@@ -205,7 +143,7 @@ var images = [
 var ui = [].slice.call( document.querySelectorAll( '.ui' ) );
 
 var container = document.getElementById( 'container' );
-var loading = document.getElementById( 'loading' );
+//var loading = document.getElementById( 'loading' );
 var message = document.getElementById( 'message' );
 message.querySelector( 'a' ).addEventListener( 'click', function( e ) {
 	message.style.opacity = 0;
@@ -441,6 +379,17 @@ function init() {
 		lon += ( nLon - lon ) * .1;
 		lat += ( nLat - lat ) * .1;
 		fov += ( nFov - fov ) * .1; 
+
+		var lonMid = 90;
+		var maxDLon = 5;
+
+		var latMid = 0;
+		var maxDLat = 5;
+		
+		lon = Math.max(Math.min(lon, lonMid+maxDLon), lonMid-maxDLon);
+		lat = Math.max(Math.min(lat, latMid+maxDLat), latMid-maxDLat);
+		//fov = Math.max(Math.min(fov, lim), -minlim); 
+
 		distance += ( nDistance - distance ) * .1; 
 		displacement += ( nDisplacement - displacement ) * .1; 
 
@@ -537,7 +486,7 @@ function init() {
 						var dn = imageData.data[ p ] / 255;
 						var rd = ( far * near ) / ( far - dn * ( far - near ) ); // RangeInverse
 						//var rd = ( 1 - dn ) * ( far - near ) + near; // RangeLinear
-						v.z = -rd ;
+						v.z = -rd * 10 ;
 						v.x *= rd * 1;
 						v.y *= rd * ar;
 						v.multiply( scale );
@@ -612,7 +561,8 @@ function init() {
 
 			}
 
-			imgSrc.src = 'data:' + d.image.mime + ';base64,' + d.image.data;
+			//imgSrc.src = 'data:' + d.image.mime + ';base64,' + d.image.data;
+			imgSrc.src = '0011.jpg';
 
 		}
 
@@ -744,19 +694,19 @@ function init() {
 
 	}
 
-	var ul = document.getElementById( 'imageList' );
-	images.forEach( function( e ) {
-		var li = document.createElement( 'li' );
-		li.style.backgroundImage = 'url( assets/' + e + '-thumb.png)';
-		li.addEventListener( 'click', function( ev ) {
-			setLoadingText( 'Loading...' );
-			showLoading( true );
-			var src = 'assets/' + e + '.jpg';
-			d.loadFile( src, setImg, onError );
-			ev.preventDefault();
-		})
-		ul.appendChild( li );
-	} );
+//	var ul = document.getElementById( 'imageList' );
+//	images.forEach( function( e ) {
+//		var li = document.createElement( 'li' );
+//		li.style.backgroundImage = 'url( assets/' + e + '-thumb.png)';
+//		li.addEventListener( 'click', function( ev ) {
+//			setLoadingText( 'Loading...' );
+//			showLoading( true );
+//			var src = 'assets/' + e + '.jpg';
+//			d.loadFile( src, setImg, onError );
+//			ev.preventDefault();
+//		})
+//		ul.appendChild( li );
+//	} );
 
 	document.getElementById( 'uploadFile' ).addEventListener( 'change', handleFileSelect, false);
 
@@ -779,7 +729,8 @@ function init() {
 
 		setLoadingText( 'Loading...' );
 		showLoading( true );
-		var src = 'assets/window.jpg';
+		//var src = 'assets/window.jpg';
+		var src= '0011.jpg';
 		d.loadFile( src, setImg, onError );
 
 	} );
@@ -809,92 +760,92 @@ function init() {
 	    return blob;
 	}
 
-	document.getElementById( 'exportOBJ' ).addEventListener( 'click', function( e ) {
-		
-		setLoadingText( 'Exporting...' );
-		showLoading( true );
-
-		var exporter = new THREE.OBJExporter( );
-		var output = exporter.parse( meshSolid.geometry, false );
-		var blobModel = new Blob( [ output ], { type: 'text/plain' } );
-		var url = URL.createObjectURL( blobModel );
-
-		this.setAttribute( 'download', 'model-' + Date.now() + '.obj' );
-		this.setAttribute( 'href', url );
-
-		showLoading( false );
-
-	} );
-
-	document.getElementById( 'uploadSketchfab' ).addEventListener( 'click', function( e ) {
-		
-		if( settings.sketchfabToken == '' ) {
-			showMessage( 'Please enter you <b>Sketchfab</b> API token on the <b>Settings</b>' );
-			return;
-		}
-
-		setLoadingText( 'Exporting...' );
-		showLoading( true );
-
-		var exporter = new THREE.OBJExporter();
-		var output = exporter.parse( meshSolid.geometry, true );
-		var blobModel = new Blob( [ output ], { type: 'text/plain' } );
-		var blobMaterial = new Blob( [ exportMtl() ], { type: 'text/plain' } );
-		var blobImage = b64toBlob( d.image.data, d.image.mime );
-
-		var a = this;
-		var zipWriter;
-		var part = 0;
-
-		function onProgress( a, b ) {
-			setProgress( ( a / b ) / 3 + part / 3 );
-			console.log("current", a, "end", b);
-		}
-
-		zip.createWriter( new zip.BlobWriter(), function(writer) {
-			zipWriter = writer;
-
-			setLoadingText( 'Compressing...' );
-			
-			zipWriter.add( 'model.obj', 
-				new zip.BlobReader( blobModel ), function() {
-				
-				part++;	
-				zipWriter.add( 'model.mtl',
-					new zip.BlobReader( blobMaterial ), function() {
-
-						part++;
-						zipWriter.add( 'diffuse.jpg',
-							new zip.BlobReader( blobImage ), function() {
-
-								zipWriter.close( function( blob ) {
-									var name = 'model.zip';
-									var url = URL.createObjectURL( blob );
-									
-									exportZipToSketchfab( blob );
-
-								/*var downloader = document.getElementById( 'downloader' );
-									var a = document.createElement( 'a' );
-									a.setAttribute( 'download', name );
-									a.setAttribute( 'href', url );
-									a.textContent = 'Download ' + name;
-									var li = document.createElement( 'li' );
-									li.appendChild( a );
-									downloader.appendChild( li );*/
-
-								} );
-
-						}, onProgress );
-
-					}, onProgress );
-
-			}, onProgress);
-
-		});
-
-		e.preventDefault();
-		
-	});
+//	document.getElementById( 'exportOBJ' ).addEventListener( 'click', function( e ) {
+//		
+//		setLoadingText( 'Exporting...' );
+//		showLoading( true );
+//
+//		var exporter = new THREE.OBJExporter( );
+//		var output = exporter.parse( meshSolid.geometry, false );
+//		var blobModel = new Blob( [ output ], { type: 'text/plain' } );
+//		var url = URL.createObjectURL( blobModel );
+//
+//		this.setAttribute( 'download', 'model-' + Date.now() + '.obj' );
+//		this.setAttribute( 'href', url );
+//
+//		showLoading( false );
+//
+//	} );
+//
+//	document.getElementById( 'uploadSketchfab' ).addEventListener( 'click', function( e ) {
+//		
+//		if( settings.sketchfabToken == '' ) {
+//			showMessage( 'Please enter you <b>Sketchfab</b> API token on the <b>Settings</b>' );
+//			return;
+//		}
+//
+//		setLoadingText( 'Exporting...' );
+//		showLoading( true );
+//
+//		var exporter = new THREE.OBJExporter();
+//		var output = exporter.parse( meshSolid.geometry, true );
+//		var blobModel = new Blob( [ output ], { type: 'text/plain' } );
+//		var blobMaterial = new Blob( [ exportMtl() ], { type: 'text/plain' } );
+//		var blobImage = b64toBlob( d.image.data, d.image.mime );
+//
+//		var a = this;
+//		var zipWriter;
+//		var part = 0;
+//
+//		function onProgress( a, b ) {
+//			setProgress( ( a / b ) / 3 + part / 3 );
+//			console.log("current", a, "end", b);
+//		}
+//
+//		zip.createWriter( new zip.BlobWriter(), function(writer) {
+//			zipWriter = writer;
+//
+//			setLoadingText( 'Compressing...' );
+//			
+//			zipWriter.add( 'model.obj', 
+//				new zip.BlobReader( blobModel ), function() {
+//				
+//				part++;	
+//				zipWriter.add( 'model.mtl',
+//					new zip.BlobReader( blobMaterial ), function() {
+//
+//						part++;
+//						zipWriter.add( 'diffuse.jpg',
+//							new zip.BlobReader( blobImage ), function() {
+//
+//								zipWriter.close( function( blob ) {
+//									var name = 'model.zip';
+//									var url = URL.createObjectURL( blob );
+//									
+//									exportZipToSketchfab( blob );
+//
+//								/*var downloader = document.getElementById( 'downloader' );
+//									var a = document.createElement( 'a' );
+//									a.setAttribute( 'download', name );
+//									a.setAttribute( 'href', url );
+//									a.textContent = 'Download ' + name;
+//									var li = document.createElement( 'li' );
+//									li.appendChild( a );
+//									downloader.appendChild( li );*/
+//
+//								} );
+//
+//						}, onProgress );
+//
+//					}, onProgress );
+//
+//			}, onProgress);
+//
+//		});
+//
+//		e.preventDefault();
+//		
+//	});
 
 	onResize();
 	render();

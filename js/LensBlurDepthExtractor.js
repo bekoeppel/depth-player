@@ -83,14 +83,14 @@
 
 			}
 
-			this.focus.blurAtInfinity = matchAttribute( 'GFocus:BlurAtInfinity', str );
-			this.focus.focalDistance  = matchAttribute( 'GFocus:focalDistance', str );
-			this.focus.focalPoint     = matchAttribute( 'GFocus:focalPoint', str );
-			this.focus.focalPointX    = matchAttribute( 'GFocus:focalPointX', str );
-			this.focus.focalPointY    = matchAttribute( 'GFocus:focalPointY', str );
+			//this.focus.blurAtInfinity = matchAttribute( 'GFocus:BlurAtInfinity', str );
+			//this.focus.focalDistance  = matchAttribute( 'GFocus:focalDistance', str );
+			//this.focus.focalPoint     = matchAttribute( 'GFocus:focalPoint', str );
+			//this.focus.focalPointX    = matchAttribute( 'GFocus:focalPointX', str );
+			//this.focus.focalPointY    = matchAttribute( 'GFocus:focalPointY', str );
 
-			this.image.mime = matchAttribute( 'GImage:Mime', str );
-			this.image.data = matchAttribute( 'GImage:Data', str );
+			//this.image.mime = matchAttribute( 'GImage:Mime', str );
+			//this.image.data = matchAttribute( 'GImage:Data', str );
 			
 			this.depth.format = matchAttribute( 'GDepth:Format', str );
 			this.depth.near   = matchAttribute( 'GDepth:Near', str );
